@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.util.Base64;
 
 import com.clover.connector.sdk.v3.PaymentConnector;
 import com.clover.connector.sdk.v3.PaymentV3Connector;
@@ -35,6 +36,7 @@ import com.clover.sdk.v3.remotepay.VaultCardResponse;
 import com.clover.sdk.v3.remotepay.VerifySignatureRequest;
 import com.clover.sdk.v3.remotepay.VoidPaymentResponse;
 
+import java.io.ByteArrayOutputStream;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
@@ -153,8 +155,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bitmap btmp = (Bitmap) data.getExtras().get("data");
-
         imgview.setImageBitmap(btmp);
+        //stackoverflow converting Java bitmap to byte array
+        ByteArrayOutputStream stream =  new ByteArrayOutputStream();
+        btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        String temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
     }
 
     @Override
