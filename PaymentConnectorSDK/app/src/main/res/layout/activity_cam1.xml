@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="thebrewerytech.paymentconnectorsdk.cam1">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="208dp"
+        android:layout_height="213dp"
+        android:text="This isn't you! Try Again!"
+        android:textSize="30dp"
+        tools:layout_editor_absoluteX="58dp"
+        tools:layout_editor_absoluteY="198dp" />
+
+    <Button
+        android:id="@+id/camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="open_camera"
+        android:text="Camera"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="130dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sad"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        />
+</LinearLayout>

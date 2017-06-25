@@ -41,11 +41,16 @@ import com.clover.sdk.v3.remotepay.VerifySignatureRequest;
 import com.clover.sdk.v3.remotepay.VoidPaymentRequest;
 import com.clover.sdk.v3.remotepay.VoidPaymentResponse;
 
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 import java.io.IOException;
 
 import okhttp3.FormBody;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -53,6 +58,7 @@ import okhttp3.Response;
 import okhttp3.RequestBody;
 
 import static com.loopj.android.http.AsyncHttpClient.log;
+import static okhttp3.Headers.of;
 
 public class MainActivity extends AppCompatActivity {
     private PaymentConnector paymentServiceConnector;
@@ -65,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
     private String temp;
     private Payment p;
     private String cardnum, name;
-    private OkHttpClient client;
     public void create_tender(View v){new AsyncTask<Void, Void, Void>(){
         private TenderConnector tenderConnector;
 //        private Tender tender;
@@ -273,92 +278,105 @@ public class MainActivity extends AppCompatActivity {
             this.paymentServiceConnector.connect();
         }
     }
-
-    String ret;
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        //        super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK && data != null){
-            if(requestCode == CUSTOMER_DATA){
-
-                p = (Payment) data.getParcelableExtra(Intents.EXTRA_PAYMENT);
-                cardnum = p.getCardTransaction().getLast4();
-                name = p.getCardTransaction().getCardholderName();
-                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(i, 1);
-            }
-            if(requestCode == 1){
+            if(requestCode == 1) {
+                Intent intent = new Intent(this, cam1.class);
+                startActivity(intent);
                 Bitmap btmp = (Bitmap) data.getExtras().get("data");
+
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
-                MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
                 //OkHttpClient client = new OkHttpClient();
-
-                Request request = new Request.Builder()
-                        .url("https://api.chui.ai/v1/spdetect")
-                        .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
-                        .addHeader("Content-Type", "img/jpeg")
-                        .post(RequestBody.create(MEDIA, temp))
-                        .build();
                 try {
-                    Response response = client.newCall(request).execute();
-                    System.out.println(response.body().string());
-                } catch (Exception e) {
-                    e.printStackTrace();
+                    PostTask p = new PostTask();
+                    p.execute(temp);
                 }
-
-
-
-                /*PostTask pt = new PostTask();/
-                try {
-                    ret = pt.post("https://api.chui.ai/v1/spdetect", temp);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }*/
+                catch(Exception e){
+                        e.printStackTrace();
+                    }
 
             }
+            if(requestCode == 0){
+                p = (Payment) data.getParcelableExtra(Intents.EXTRA_PAYMENT);
+                cardnum = p.getCardTransaction().getLast4();
+                name = p.getCardTransaction().getCardholderName();
+                // pass payment through next activity
+//                Intent intent = new Intent(this, cam_activity.class);
+//                intent.putExtra("payment", )
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(i, 1);
+            }
+
         }
-//        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+    public void faceMatch(String temp) throws Exception{
+        MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
+        OkHttpClient client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("img", temp)
+                .add("id", "ahBzfmNodWlzcGRldGVjdG9ychcLEgpFbnJvbGxtZW50GICAgMCozZcLDA")
+                .build();
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe");
+        map.put("Content-Type", "application/json");
+        Headers headers = of(map);
+        Request request = new Request.Builder()
+                .url("https://api.chui.ai/v1/match")
+                .headers(headers)
+//                .addHeader("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+//                .addHeader("Content-Type", "application/json")
+                .post(body)
+                .build();
+
+        log.d("Request", request.toString());
+        Response response = client.newCall(request).execute();
+
+        String strResult = response.body().string();
+        JSONObject jsResult = new JSONObject(strResult);
+
+//        strResult
     }
 
-
-    private class PostTask extends AsyncTask {
-        private Exception exception;
-
+    private class PostTask extends AsyncTask<String, Void, Void> {
         @Override
-        protected Object doInBackground(Object[] objects) {
+        protected Void doInBackground(String... img) {
             try {
-                String getResponse = post("https://api.chui.ai/v1/enroll", temp);
-                return getResponse;
+                faceMatch(img[0]);
             } catch (Exception e) {
-                this.exception = e;
-                return null;
+                e.printStackTrace();
+
             }
-        }
-
-        protected void onPostExecute(String getResponse) {
-            System.out.println(getResponse);
-        }
-
-        private String post(String url, String bits) throws IOException {
-            RequestBody body = new FormBody.Builder()
-                    .add("img0", "123")
-                    .add("img1", "123")
-                    .add("img2", "123")
-                    .build();
-            Request request = new Request.Builder()
-                    .url(url)
-                    .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
-                    .addHeader("Content-Type", "img/jpeg")
-                    .post(body)
-                    .build();
-            Response response = client.newCall(request).execute();
-            return response.body().string();
+            return null;
         }
 
     }
+
+
+
+
+//        private String post(String url, String bits) throws IOException {
+//            RequestBody body = new FormBody.Builder()
+//                    .add("img0", "123")
+//                    .add("img1", "123")
+//                    .add("img2", "123")
+//                    .build();
+//            Request request = new Request.Builder()
+//                    .url(url)
+//                    .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+//                    .addHeader("Content-Type", "img/jpeg")
+//                    .post(body)
+//                    .build();
+//            Response response = client.newCall(request).execute();
+//            return response.body().string();
+//        }
+
+//    }
 
     public void executeVaultedCard(View view) {
         try {
