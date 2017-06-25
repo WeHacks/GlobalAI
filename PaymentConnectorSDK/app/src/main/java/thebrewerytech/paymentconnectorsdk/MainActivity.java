@@ -278,9 +278,7 @@ public class MainActivity extends AppCompatActivity {
                 btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
-
             }
-
         }
 //        super.onActivityResult(requestCode, resultCode, data);
     }
