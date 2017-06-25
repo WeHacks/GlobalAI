@@ -52,6 +52,8 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.RequestBody;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 public class MainActivity extends AppCompatActivity {
     private PaymentConnector paymentServiceConnector;
     private String TAG = "MainActivity";
@@ -272,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    String ret;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && data != null){
@@ -289,16 +292,39 @@ public class MainActivity extends AppCompatActivity {
                 btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
-                //send to server
-                PostTask task = new PostTask();
-                task.execute();
+
+                MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
+                //OkHttpClient client = new OkHttpClient();
+
+                Request request = new Request.Builder()
+                        .url("https://api.chui.ai/v1/spdetect")
+                        .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+                        .addHeader("Content-Type", "img/jpeg")
+                        .post(RequestBody.create(MEDIA, temp))
+                        .build();
+                try {
+                    Response response = client.newCall(request).execute();
+                    System.out.println(response.body().string());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+
+                /*PostTask pt = new PostTask();/
+                try {
+                    ret = pt.post("https://api.chui.ai/v1/spdetect", temp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }*/
+
             }
         }
 //        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
-    public class PostTask extends AsyncTask {
+    private class PostTask extends AsyncTask {
         private Exception exception;
 
         @Override
@@ -355,4 +381,23 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         this.paymentServiceConnector.disconnect();
     }
+
+//    public static void main(String[] args) {
+//        MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
+//        OkHttpClient client = new OkHttpClient();
+//        String postBody = "123";
+//
+//        Request request = new Request.Builder()
+//                .url("https://api.chui.ai/v1/spdetect")
+//                .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+//                .addHeader("Content-Type", "img/jpeg")
+//                .post(RequestBody.create(MEDIA, "12"))
+//                .build();
+//        try {
+//            Response response = client.newCall(request).execute();
+//            System.out.println(response.body().string());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
