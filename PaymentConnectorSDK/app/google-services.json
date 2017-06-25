@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "399052073630",
+    "firebase_url": "https://ai-hackathon-4edf3.firebaseio.com",
+    "project_id": "ai-hackathon-4edf3",
+    "storage_bucket": "ai-hackathon-4edf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399052073630:android:7fe7b00132b6a9ad",
+        "android_client_info": {
+          "package_name": "thebrewerytech.paymentconnectorsdk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399052073630-k29skaesmvd14m6kk6plruhimsk4lv9a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCi2cp1TBbc3PCfYqPalZfqSwgxaQ4rHDA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

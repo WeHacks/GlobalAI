@@ -1,24 +1,26 @@
 package thebrewerytech.paymentconnectorsdk;
+
 import android.accounts.Account;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.util.Base64;
 import android.widget.Toast;
 
 import com.clover.connector.sdk.v3.PaymentConnector;
 import com.clover.connector.sdk.v3.PaymentV3Connector;
+import com.clover.sdk.internal.util.BitmapUtils;
 import com.clover.sdk.util.CloverAccount;
 import com.clover.sdk.v1.Intents;
 import com.clover.sdk.v1.ServiceConnector;
-import com.clover.sdk.v1.tender.Tender;
 import com.clover.sdk.v1.tender.TenderConnector;
 import com.clover.sdk.v3.order.VoidReason;
 import com.clover.sdk.v3.payments.Payment;
@@ -41,6 +43,14 @@ import com.clover.sdk.v3.remotepay.VoidPaymentResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.util.UUID;
+import java.io.IOException;
+
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.RequestBody;
 
 public class MainActivity extends AppCompatActivity {
     private PaymentConnector paymentServiceConnector;
@@ -53,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     private String temp;
     private Payment p;
     private String cardnum, name;
+    private OkHttpClient client;
     public void create_tender(View v){new AsyncTask<Void, Void, Void>(){
         private TenderConnector tenderConnector;
 //        private Tender tender;
@@ -278,13 +289,50 @@ public class MainActivity extends AppCompatActivity {
                 btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                 byte[] byteArray = stream.toByteArray();
                 temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
+                //send to server
+                PostTask task = new PostTask();
+                task.execute();
             }
         }
 //        super.onActivityResult(requestCode, resultCode, data);
     }
 
 
+    public class PostTask extends AsyncTask {
+        private Exception exception;
 
+        @Override
+        protected Object doInBackground(Object[] objects) {
+            try {
+                String getResponse = post("https://api.chui.ai/v1/enroll", temp);
+                return getResponse;
+            } catch (Exception e) {
+                this.exception = e;
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String getResponse) {
+            System.out.println(getResponse);
+        }
+
+        private String post(String url, String bits) throws IOException {
+            RequestBody body = new FormBody.Builder()
+                    .add("img0", "123")
+                    .add("img1", "123")
+                    .add("img2", "123")
+                    .build();
+            Request request = new Request.Builder()
+                    .url(url)
+                    .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+                    .addHeader("Content-Type", "img/jpeg")
+                    .post(body)
+                    .build();
+            Response response = client.newCall(request).execute();
+            return response.body().string();
+        }
+
+    }
 
     public void executeVaultedCard(View view) {
         try {
