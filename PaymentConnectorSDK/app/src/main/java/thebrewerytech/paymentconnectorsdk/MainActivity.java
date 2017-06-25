@@ -281,6 +281,7 @@ public class MainActivity extends AppCompatActivity {
         client = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
                 .add("id", "ahBzfmNodWlzcGRldGVjdG9ychcLEgpFbnJvbGxtZW50GICAgMCozZcLDA")
+
                 .build();
 
         Request request = new Request.Builder()
@@ -288,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
                 .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
                 .addHeader("Content-Type", "application/json")
                 .post(body)
-                //.post(RequestBody.create(MEDIA, temp))
+                .post(RequestBody.create(MEDIA, image))
                 .build();
         Response response = client.newCall(request).execute();
         System.out.println(response.body().string());
@@ -408,7 +409,6 @@ public class MainActivity extends AppCompatActivity {
         try {
             faceMatch("123");
         } catch (Exception e) {
-
         }
     }
 
