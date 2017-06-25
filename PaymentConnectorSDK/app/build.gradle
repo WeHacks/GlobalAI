@@ -28,5 +28,6 @@ dependencies {
     compile 'com.clover.sdk:clover-android-connector-sdk:168'
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
+    compile 'com.squareup.okhttp3:okhttp:3.8.1'
     testCompile 'junit:junit:4.12'
 }

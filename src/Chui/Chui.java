@@ -16,6 +16,11 @@ public class Chui {
                 .url("https://api.chui.ai/v1/spdetect")
                 .post(formBody)
                 .build();
+        try {
+            Response response = client.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 
