@@ -1,5 +1,5 @@
 import requests
-#import webapp2
+import webapp2
 import base64
 import json
 
@@ -7,11 +7,18 @@ class DoChuiAuth(webapp2.RequestHandler):
     def get(self):
         self.response.out.write("Hello,world")
     def post(self):
-        pictureStream = self.request.get('text')
-        faceMatch(enrollmentID, pictureStream)
+        pictureStream = self.request.get('pictureStream')
+        print pictureStream
+        spoofDetection(pictureStream)
+        #enrollmentID = self.request.get('enrollmentID')
+#        response = webapp2.Response(faceMatch(enrollmentID, pictureStream))
+#        return response
+
+
 application = webapp2.WSGIApplication([
     ('/', DoChuiAuth)
     ], debug=True)
+        
 
 def spoofDetection(pictureStream):
     headers = {
