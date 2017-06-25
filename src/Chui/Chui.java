@@ -7,7 +7,7 @@ public class Chui {
 
     public boolean spoofDetection(String picture) throws Exception {
         RequestBody formBody = new FormBody.Builder()
-                .add(picture)
+                .add("12345");
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()

@@ -1,6 +1,18 @@
 import requests
+import webapp2
 import base64
 import json
+
+class DoChuiAuth(webapp2.RequestHandler):
+    def get(self):
+        self.response.out.write("Hello,world")
+    def post(self):
+        pictureStream = self.request.get('text')
+        faceMatch(enrollmentID, pictureStream)
+
+application = webapp2.WSGIApplication([
+    ('/', DoChuiAuth)
+    ], debug=True)
 
 def spoofDetection(pictureStream):
     headers = {
@@ -22,7 +34,7 @@ def enrollUser(img0, img1, img2, name):
     "img0":base64.b64encode(open('Jinchi1.jpg', 'rb').read()),
     "img1":base64.b64encode(open('Jinchi2.jpg', 'rb').read()),
     "img2":base64.b64encode(open('Jinchi3.jpg', 'rb').read()),
-    "name":"Jinchi"
+    "name":name
     }
     r = requests.post(url, data=json.dumps(data), headers=headers)
     print(r.json())
