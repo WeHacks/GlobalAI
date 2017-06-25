@@ -5,3 +5,7 @@ threadsafe: true
 handlers:
 - url: /.*
   script: Chui.application
+
+libraries:
+- name: ssl
+  version: 2.7

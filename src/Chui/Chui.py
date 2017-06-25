@@ -7,7 +7,7 @@ class DoChuiAuth(webapp2.RequestHandler):
     def get(self):
         self.response.out.write("Hello,world")
     def post(self):
-        pictureStream = self.request.get('pictureStream')
+        pictureStream = {'img':self.request.get('img')}
         print pictureStream
         spoofDetection(pictureStream)
         #enrollmentID = self.request.get('enrollmentID')
@@ -23,7 +23,7 @@ application = webapp2.WSGIApplication([
 def spoofDetection(pictureStream):
     headers = {
        "x-api-key":"vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe",
-       "Content-Type":"image/jpeg",
+       "Content-Type":"img/jpeg",
     }
     url = "https://api.chui.ai/v1/spdetect"
     r  = requests.post(url, data = pictureStream, headers = headers)
