@@ -1,25 +1,27 @@
 package thebrewerytech.paymentconnectorsdk;
-
 import android.accounts.Account;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.RemoteException;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.util.Base64;
+import android.widget.Toast;
 
 import com.clover.connector.sdk.v3.PaymentConnector;
 import com.clover.connector.sdk.v3.PaymentV3Connector;
-import com.clover.sdk.internal.util.BitmapUtils;
 import com.clover.sdk.util.CloverAccount;
 import com.clover.sdk.v1.Intents;
 import com.clover.sdk.v1.ServiceConnector;
+import com.clover.sdk.v1.tender.Tender;
+import com.clover.sdk.v1.tender.TenderConnector;
+import com.clover.sdk.v3.order.VoidReason;
+import com.clover.sdk.v3.payments.Payment;
 import com.clover.sdk.v3.remotepay.AuthResponse;
 import com.clover.sdk.v3.remotepay.CapturePreAuthResponse;
 import com.clover.sdk.v3.remotepay.ConfirmPaymentRequest;
@@ -34,6 +36,7 @@ import com.clover.sdk.v3.remotepay.TipAdded;
 import com.clover.sdk.v3.remotepay.TipAdjustAuthResponse;
 import com.clover.sdk.v3.remotepay.VaultCardResponse;
 import com.clover.sdk.v3.remotepay.VerifySignatureRequest;
+import com.clover.sdk.v3.remotepay.VoidPaymentRequest;
 import com.clover.sdk.v3.remotepay.VoidPaymentResponse;
 
 import java.io.ByteArrayOutputStream;
@@ -44,7 +47,68 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private AsyncTask waitingTask;
     private Account mAccount;
-    ImageView imgview;
+    private final int CUSTOMER_DATA = 0;
+    private long l;
+    private Button create_tend, charge;
+    private String temp;
+    private Payment p;
+    private String cardnum, name;
+    public void create_tender(View v){new AsyncTask<Void, Void, Void>(){
+        private TenderConnector tenderConnector;
+//        private Tender tender;
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                tenderConnector = new TenderConnector(getBaseContext(), CloverAccount.getAccount(getBaseContext()), null);
+                tenderConnector.checkAndCreateTender("PicPay", getPackageName(), true, false);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+    }.execute();
+    };
+    private void startPaymentConnector_voidPayment(Payment payment) {
+        if (payment != null) {
+            try {
+                final VoidPaymentRequest request = new VoidPaymentRequest();
+                request.setPaymentId(payment.getId());
+                request.setOrderId(payment.getOrder().getId());
+                request.setVoidReason(VoidReason.USER_CANCEL.toString());
+
+                request.validate();
+                Log.i(this.getClass().getSimpleName(), request.toString());
+                if (this.paymentServiceConnector != null) {
+                    if (this.paymentServiceConnector.isConnected()) {
+                        this.paymentServiceConnector.getService().voidPayment(request);
+                    } else {
+                        Toast.makeText(getApplicationContext(), "not connected", Toast.LENGTH_LONG).show();
+                        this.paymentServiceConnector.connect();
+                        waitingTask = new AsyncTask() {
+                            @Override
+                            protected Object doInBackground(Object[] params) {
+                                try {
+                                    MainActivity.this.paymentServiceConnector.getService().voidPayment(request);
+                                } catch (RemoteException e) {
+                                    Log.e(this.getClass().getSimpleName(), " void", e);
+                                }
+                                return null;
+                            }
+                        };
+                    }
+                }
+            } catch (IllegalArgumentException e) {
+                Log.e(this.getClass().getSimpleName(), " void", e);
+                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            } catch (RemoteException e) {
+                Log.e(this.getClass().getSimpleName(), " void", e);
+            }
+        } else {
+            Toast.makeText(getApplicationContext(), "All Good", Toast.LENGTH_LONG).show();
+        }
+    }
 
     final PaymentV3Connector.PaymentServiceListener paymentConnectorListener = new PaymentV3Connector.PaymentServiceListener() {
         @Override
@@ -138,29 +202,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //EDMT Dev video
-        Button btnCamera = (Button) findViewById(R.id.camerabtn);
-        imgview = (ImageView) findViewById(R.id.imageview);
-
-        btnCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 0);
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap btmp = (Bitmap) data.getExtras().get("data");
-        imgview.setImageBitmap(btmp);
-        //stackoverflow converting Java bitmap to byte array
-        ByteArrayOutputStream stream =  new ByteArrayOutputStream();
-        btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
-        byte[] byteArray = stream.toByteArray();
-        String temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
+        create_tend = (Button)findViewById(R.id.create_tend);
+        charge = (Button)findViewById(R.id.charge);
+        if(getIntent().hasExtra(Intents.EXTRA_AMOUNT)){
+            charge.setVisibility(View.VISIBLE);
+            create_tend.setVisibility(View.GONE);
+            l = getIntent().getLongExtra(Intents.EXTRA_AMOUNT, 0);
+        }
+        else{
+            charge.setVisibility(View.GONE);
+            create_tend.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -209,12 +261,52 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && data != null){
+            if(requestCode == CUSTOMER_DATA){
+
+                p = (Payment) data.getParcelableExtra(Intents.EXTRA_PAYMENT);
+                cardnum = p.getCardTransaction().getLast4();
+                name = p.getCardTransaction().getCardholderName();
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(i, 1);
+            }
+            if(requestCode == 1){
+                Bitmap btmp = (Bitmap) data.getExtras().get("data");
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+            }
+
+        }
+//        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
+
+
     public void executeVaultedCard(View view) {
         try {
-            this.paymentServiceConnector.getService().vaultCard(Intents.CARD_ENTRY_METHOD_ALL);
-        } catch (RemoteException e) {
+
+            // vaultCard takes in a static int
+            // number that represents the credit card
+            //this intent pays
+            Intent a = new Intent(Intents.ACTION_SECURE_PAY);
+            a.putExtra(Intents.EXTRA_AMOUNT, l);
+
+            // code of intent with intent
+            startActivityForResult(a, CUSTOMER_DATA);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        this.paymentServiceConnector.disconnect();
     }
 }

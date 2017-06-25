@@ -3,138 +3,156 @@
 
     <item
         is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/2caa26264b55a0c02134c0dded58d340f81bd757/output/jars/libs/calc.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="80453db499fab44e5f21a291290e95d6e91ac942">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/calc_895e17b3a934fca37f18520fc97ce2d434043748.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/d737687dfeef59957d561ecf4ab39dc9f8d0032e/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_214062ccc0291f80deb657303ef324e7501e0903.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/0e22249e924a4a3a3aef5b9c2b34a1af41a18034/output/jars/classes.jar"
+        jar="C:\Users\jinch\.android\build-cache\94d5ff201ccf952853ef0476cedcaf2e2824490d\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="f2b64f6a762f61a2379d6a79af03e2ee56eefe0b">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_67c85439b715362096b80aadcc540f0379dc6781.jar" />
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_5dbce19ad4f26c4f0d566faca3133f552079290f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/7f2cc6ef4de907d44a0294e7be43fec53f7f7a59/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="ebfabb3b4ef2fbeebbd85587396c474907173ff9">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_16b4202602d36986c8ad4ebbb5d64277a6c4b670.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/2caa26264b55a0c02134c0dded58d340f81bd757/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="fb8ab9b452efd1b491995dd79f09dc5867c85808">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_2f1fed4145250ee7919bd7d1604fcc1bd45fcac5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha9/constraint-layout-solver-1.0.0-alpha9.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6a908fd0803cc5f65b007101002aec06dc7544da">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.0.0-alpha9_02501cee2244b3b749cc6bb4e5db4cbd4fa6c68b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/8e32235397decbab7e0a6bb361e24beadc6fcb69/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_25479cb3a08075be7005539936759b77439454c0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/d25dbaa01b3be650c1d4b56171f30daacdaf22cd/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_d597a62e9b36fe487d9bf255f98be79c64c17671.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/96a291e4da23b873c735b8e7c093a545d3394a5c/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_73c05fced8fca44a6e7b5c5e848cf63894925bca.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_49d5ab0515f52a189c2f913e8efd33b827ddda0b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/19805c96c49586782a535c7583285d413a4b455d/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_6d19d7e75ddaf4bdb62380041cbd2b7b810b685b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/7780a9d5e3f11285556d54b5b41cb268d84ef157/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_ae9eaea718aac2924044db5641df6119edf66f70.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/4236b7b8e274e5d4b1e13f886084bddb74a358e9/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_5b9775b908c96325e741a89e77d2147c971f20f0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/d192e48839350d0b94ff076c8de27101ab5268f6/output/jars/classes.jar"
+        jar="C:\Users\jinch\.android\build-cache\02f59891ddfc293aa390b27cca4a84d06c72d4ec\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_38a4ea5561b55f34e5709005c2cccbdecc2ca6dc.jar" />
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_79e7deb82aedf68a3f1a9e9c2ea9fa516f25e700.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/wilsonwang/.android/build-cache/6cb121807d0e5b36070a515b9ce295c03e99dc80/output/jars/classes.jar"
+        jar="C:\Users\jinch\.android\build-cache\49cbe420c8480d8a1c03f1f7e73d65a0344e66e1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_c4a99dec7a8c099cf5c0a682060ffb172cdd6835.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\7faae3405c3b8a68675faa0f217997f84a13fe5d\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
-        <dex dex="/Users/wilsonwang/Desktop/PaymentConnectorSDK/app/build/intermediates/pre-dexed/debug/classes_7ec595b4c875f4919e2073d0a449bca20a046b9b.jar" />
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_c43dabf5659efd805a0008a8417e411b7a5ba1b7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.1_7206427ddc18a8716aa266fb7dcf37b1f308735c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\f4bdf009f205aa5a8c12eb56ca9ed1b4f1c5e598\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_61a3dc4225cd7939484d73c79ed5fdfb71f9cec5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha9\constraint-layout-solver-1.0.0-alpha9.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6a908fd0803cc5f65b007101002aec06dc7544da">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0-alpha9_a2f1ec26eee8ffd2509daaa643ee290f2053a818.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\c0a03d17662431373217860e9454556fdc135368\output\jars\libs\calc.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="80453db499fab44e5f21a291290e95d6e91ac942">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\calc_70c5135afead02a2117c6a47287aef5471b6d520.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\2f92345386cfcd4420f074da02f42425b1a201ef\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_6ba0eff583e96b8d6ea3682f73e54ebaf9761417.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.gradle\caches\modules-2\files-2.1\cz.msebera.android\httpclient\4.3.6\526a9f794eab830eae4f23a62c572878b3f491ab\httpclient-4.3.6.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\httpclient-4.3.6_5bb90d4fcf5875f7eccf2dfd7cfa46901d9294e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\e3c5e52895ebada4db584f9f68efc7a36d0d36bd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_090abb7b66c621184e49abaebc47e47f60f2b6d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\f187a95785283fb7ab7cbcd2273e044ab1fafec6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_1a91b2b9bf6cf57c7c784a1632a332e807bcf2c6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\c0a03d17662431373217860e9454556fdc135368\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fb8ab9b452efd1b491995dd79f09dc5867c85808">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_d22eeb4a65ed2f58ec096872a6c06a7ba380ed4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.gradle\caches\modules-2\files-2.1\com.loopj.android\android-async-http\1.4.9\386a4339ffe52d5d63e80f9bed8d2b1d1a418249\android-async-http-1.4.9.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\android-async-http-1.4.9_5a4aa8998b3f658c3698ca0e3d2e6bd0647e7e7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\896d66ebab8199cece01727c1faa6dbf46833203\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_1fcec1dd2754876b6e78a60df208ef6d0fb0205c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\aa0803fba48ddc181c092f1ea7cec9adedd9edab\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_418f35224bb6e09d19918416cd50623fd82eca7c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\jinch\.android\build-cache\f70c8883a40f41dac8b5bd4637f3c6d3622b2db4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="ebfabb3b4ef2fbeebbd85587396c474907173ff9">
+        <dex dex="C:\Users\jinch\OneDrive\Documents\cloverapp\PaymentConnectorSDK\app\build\intermediates\pre-dexed\debug\classes_464ba7e59b40582f36ae1dfddb354b76d309f982.jar" />
     </item>
 
 </items>

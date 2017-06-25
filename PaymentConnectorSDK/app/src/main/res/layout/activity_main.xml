@@ -6,27 +6,21 @@
     android:layout_height="match_parent"
     tools:context="thebrewerytech.paymentconnectorsdk.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageview"
-        android:layout_width="match_parent"
-        android:layout_weight="9"
-        android:layout_height="fill_parent"/>
 
     <Button
-        android:id="@+id/vaultrequest"
+        android:id="@+id/charge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="executeVaultedCard"
-        android:text="Launch Card Vault Request"/>
+        android:text="Launch Card Vault Request" />
 
     <Button
-        android:id="@+id/camerabtn"
-        android:layout_below="@+id/vaultrequest"
+        android:id="@+id/create_tend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="executeVaultedCard"
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@android:color/white"
-        android:text="Open Camera"/>
+        android:onClick="create_tender"
+        android:text="Create Tender"
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="127dp" />
 
 </LinearLayout>
