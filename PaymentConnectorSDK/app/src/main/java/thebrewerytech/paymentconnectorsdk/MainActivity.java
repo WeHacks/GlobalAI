@@ -51,6 +51,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.RequestBody;
+import okio.BufferedSink;
 
 import static com.loopj.android.http.AsyncHttpClient.log;
 
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private String temp;
     private Payment p;
     private String cardnum, name;
-    private OkHttpClient client;
+    static OkHttpClient client;
     public void create_tender(View v){new AsyncTask<Void, Void, Void>(){
         private TenderConnector tenderConnector;
 //        private Tender tender;
@@ -274,6 +275,26 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public static Boolean faceMatch (String image) throws IOException {
+
+        MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
+        client = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("id", "ahBzfmNodWlzcGRldGVjdG9ychcLEgpFbnJvbGxtZW50GICAgMCozZcLDA")
+                .build();
+
+        Request request = new Request.Builder()
+                .url("https://api.chui.ai/v1/match")
+                .header("x-api-key", "vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe")
+                .addHeader("Content-Type", "application/json")
+                .post(body)
+                //.post(RequestBody.create(MEDIA, temp))
+                .build();
+        Response response = client.newCall(request).execute();
+        System.out.println(response.body().string());
+        return true;
+    }
+
     String ret;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -355,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
                     .post(body)
                     .build();
             Response response = client.newCall(request).execute();
+            System.out.println(response.body().string());
             return response.body().string();
         }
 
@@ -382,7 +404,24 @@ public class MainActivity extends AppCompatActivity {
         this.paymentServiceConnector.disconnect();
     }
 
+    public static void main(String[] args) {
+        try {
+            faceMatch("123");
+        } catch (Exception e) {
+
+        }
+    }
+
+
 //    public static void main(String[] args) {
+//
+//        Bitmap btmp = (Bitmap) data.getExtras().get("data");
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        btmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+//        byte[] byteArray = stream.toByteArray();
+//        temp = Base64.encodeToString(byteArray, Base64.DEFAULT);
+//
+//
 //        MediaType MEDIA = MediaType.parse("text/x-markdown; charset=utf-8");
 //        OkHttpClient client = new OkHttpClient();
 //        String postBody = "123";
