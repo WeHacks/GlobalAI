@@ -1,4 +1,5 @@
 import requests
+import base64
 
 #url = 'https://globalai-171801.appspot.com/'
 url = 'http://localhost:8080'
