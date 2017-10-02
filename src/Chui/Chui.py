@@ -44,7 +44,7 @@ def enrollUser(img0, img1, img2, name):
     }
     r = requests.post(url, data=json.dumps(data), headers=headers)
     print(r.json())
-
+# Test face match
 def faceMatch(enrollmentID, pictureStream):
     headers = {
        "x-api-key":"vOjf0XRyf72QJzFOVxff7aKYtUeRBtgR6MXAMzPe",
@@ -60,5 +60,5 @@ def faceMatch(enrollmentID, pictureStream):
 
 def main():
     spoofDetection(open('Test.jpg', 'rb').read())
-
+    faceMath(enrollUser('Pic1.jpg', 'Pic2.jpg', 'Pic3.jpg', 'Pic4.jpg')
 
